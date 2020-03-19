@@ -2,6 +2,7 @@ package com.github.e999or.lesson22;
 
 import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -17,13 +18,10 @@ public class LoginPage {
         return this;
     }
 
-    boolean inspectCodePhone(){
+    LoginPage inspectCodePhone(){
         String phone = $(By.xpath("//div[@id='otp-code-text']/b")).getAttribute("innerText");
-        if(phone.equals("*1111")) {
-            return true;
-        }else{
-            return false;
-        }
+        Assert.assertTrue(phone.equals("*1111"));
+        return this;
     }
 
     LoginPage sendKeyskOtpCode(String keys){
